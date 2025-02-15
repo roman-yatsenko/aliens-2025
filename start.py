@@ -21,13 +21,17 @@ class AlienInvasion:
 
         self.ship = Ship(self)
 
+    def _check_events(self):
+        """Обробляє натиснення клавіш та події миші"""
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                sys.exit()
+
     def run_game(self):
         """Запуск основного циклу гри"""
         while True:
             # Відслідковування подій клавіатури та миші
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    sys.exit()
+            self._check_events()
 
             # За кожної ітерації циклу оновлюється екран
             self.screen.fill(self.settings.bg_color)
