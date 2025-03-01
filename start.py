@@ -58,6 +58,15 @@ class AlienInvasion:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
+    def _update_bullets(self):
+        """Оновлює позиції снарядів"""
+        self.bullets.update()
+
+        # Видалення снарядів, що вилетіли за край екрану
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+
     def _update_screen(self):
         """Оновлює зображення на екрані та відображає новий екран"""
         # За кожної ітерації циклу оновлюється екран
@@ -74,13 +83,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self.bullets.update()
-
-            # Видалення снарядів, що вилетіли за край екрану
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-
+            self._update_bullets()
             self._update_screen()
 
 
