@@ -10,7 +10,7 @@ class Bullet(Sprite):
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
-        self.color = self.settings.bulet_color
+        self.color = self.settings.bullet_color
 
         # Створюємо снаряд в позиції (0, 0) і призначаємо правильну позицію
         self.rect = pg.Rect(
