@@ -20,6 +20,7 @@ class AlienInvasion:
         pg.display.set_caption("Alien Invasion")
 
         self.ship = Ship(self)
+        self.bullets = pg.sprite.Group()
 
     def _check_events(self):
         """Обробляє натиснення клавіш та події миші"""
@@ -62,6 +63,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
+            self.bullets.update()
             self._update_screen()
 
 
