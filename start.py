@@ -27,16 +27,24 @@ class AlienInvasion:
             if event.type == pg.QUIT:
                 sys.exit()
             elif event.type == pg.KEYDOWN:
-                if event.key == pg.K_RIGHT:
-                    # Переміщуємо корабель праворуч
-                    self.ship.moving_right = True
-                elif event.key == pg.K_LEFT:
-                    self.ship.moving_left = True
+                self._check_keydown_events(event)
             elif event.type == pg.KEYUP:
-                if event.key == pg.K_RIGHT:
-                    self.ship.moving_right = False
-                elif event.key == pg.K_LEFT:
-                    self.ship.moving_left = False
+                self._check_keyup_events(event)
+
+    def _check_keydown_events(self, event):
+        """Реагує на натиснення клавіш"""
+        if event.key == pg.K_RIGHT:
+            # Переміщуємо корабель праворуч
+            self.ship.moving_right = True
+        elif event.key == pg.K_LEFT:
+            self.ship.moving_left = True
+
+    def _check_keyup_events(self, event):
+        """Реагує на відпускання клавіш"""
+        if event.key == pg.K_RIGHT:
+            self.ship.moving_right = False
+        elif event.key == pg.K_LEFT:
+            self.ship.moving_left = False
 
     def _update_screen(self):
         """Оновлює зображення на екрані та відображає новий екран"""
