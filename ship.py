@@ -27,6 +27,11 @@ class Ship:
         """Рисує корабель в поточнй позиції"""
         self.screen.blit(self.image, self.rect)
 
+    def center_ship(self):
+        """Розміщує корабель внизу екрана"""
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
+
     def update(self):
         """Оновлює позицію корабля з урахування флагу"""
         if self.moving_right and self.rect.right < self.screen_rect.right:
