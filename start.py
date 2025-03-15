@@ -5,6 +5,7 @@ import pygame as pg
 
 from alien import Alien
 from bullet import Bullet
+from button import Button
 from game_stats import GameStats
 from settings import Settings
 from ship import Ship
@@ -31,6 +32,9 @@ class AlienInvasion:
         self.aliens = pg.sprite.Group()
 
         self._create_fleet()
+
+        # Створення кнопки Play
+        self.play_button = Button(self, "Play")
 
     def _change_fleet_direction(self):
         """Опускає весь флот та змінює напрям руху"""
@@ -176,6 +180,10 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
+
+        # Кнопка Play відображається, коли гра неактивна
+        if not self.stats.game_active:
+            self.play_button.draw_button()
 
         # Відображення останнього прорисованого екрану
         pg.display.flip()
