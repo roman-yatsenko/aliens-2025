@@ -69,6 +69,10 @@ class AlienInvasion:
             self._create_fleet()
             self.settings.increase_speed()
 
+            # Збільшення рівня
+            self.stats.level += 1
+            self.sb.prepare_level()
+
     def _check_events(self):
         """Обробляє натиснення клавіш та події миші"""
         for event in pg.event.get():
@@ -117,6 +121,7 @@ class AlienInvasion:
             self.stats.reset_stats()
             self.stats.game_active = True
             self.sb.prepare_score()
+            self.sb.prepare_level()
 
             # Очистка списків прибульців та снарядів
             self.aliens.empty()

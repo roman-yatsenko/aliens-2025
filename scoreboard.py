@@ -18,6 +18,7 @@ class Scoreboard:
         # Підготовка зображень
         self.prepare_score()
         self.prepare_high_score()
+        self.prepare_level()
 
     def check_high_score(self):
         """Перевіряє, чи з'явився новий рекорд"""
@@ -38,6 +39,18 @@ class Scoreboard:
         self.high_score_rect.centerx = self.screen_rect.centerx
         self.high_score_rect.top = self.score_rect.top
 
+    def prepare_level(self):
+        """Перетворює рівень на графічне зображення"""
+        level_str = str(self.stats.level)
+        self.level_image = self.font.render(
+            level_str, True, self.text_color, self.settings.bg_color
+        )
+
+        # Виведення рівня під поточним рахунком
+        self.level_rect = self.level_image.get_rect()
+        self.level_rect.right = self.score_rect.right
+        self.level_rect.top = self.score_rect.bottom + 10
+
     def prepare_score(self):
         """Перетворює поточний рахунок на графічне зображення"""
         rounded_score = round(self.stats.score, -1)
@@ -55,3 +68,4 @@ class Scoreboard:
         """Виводе рахунок на екран"""
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
+        self.screen.blit(self.level_image, self.level_rect)
