@@ -56,6 +56,11 @@ class AlienInvasion:
         """Обробляє колізії снарядів х прибульцями"""
         # Перевірка потраплянь у прибульців
         collisions = pg.sprite.groupcollide(self.bullets, self.aliens, True, True)
+
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.sb.prepare_score()
+
         if not self.aliens:
             # Знищення існуючих снарядів та створення нового флоту
             self.bullets.empty()

@@ -16,9 +16,9 @@ class Scoreboard:
         self.font = pg.font.SysFont(None, 48)
 
         # Підготовка початкового зображення
-        self._prepare_score()
+        self.prepare_score()
 
-    def _prepare_score(self):
+    def prepare_score(self):
         """Перетворює поточний рахунок на графічне зображення"""
         score_str = str(self.stats.score)
         self.score_image = self.font.render(
