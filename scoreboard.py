@@ -1,7 +1,7 @@
 import pygame as pg
 
 
-class Screboard:
+class Scoreboard:
     """Клас для виведення ігрової інформації"""
 
     def __init__(self, ai_game):
