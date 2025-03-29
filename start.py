@@ -104,6 +104,8 @@ class AlienInvasion:
             sys.exit()
         elif event.key == pg.K_SPACE:
             self._fire_bullet()
+        elif event.key == pg.K_RETURN and not self.stats.game_active:
+            self._start_new_game()
 
     def _check_keyup_events(self, event):
         """Реагує на відпускання клавіш"""
@@ -116,24 +118,7 @@ class AlienInvasion:
         """Запускає нову гру коли натиснуто кнопку Play"""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
-            # Скидання ігрової статистики та налштувань
-            self.settings.initialize_dynamic_settings()
-            self.stats.reset_stats()
-            self.stats.game_active = True
-            self.sb.prepare_score()
-            self.sb.prepare_level()
-            self.sb.prepare_ships()
-
-            # Очистка списків прибульців та снарядів
-            self.aliens.empty()
-            self.bullets.empty()
-
-            # Створення нового флоту та розміщення корабля по центру
-            self._create_fleet()
-            self.ship.center_ship()
-
-            # Приховати мишу
-            pg.mouse.set_visible(False)
+            self._start_new_game()
 
     def _create_alien(self, alien_number, row_number):
         """Створює одного прибульця і розміщує його в ряду"""
@@ -191,6 +176,27 @@ class AlienInvasion:
         else:
             self.stats.game_active = False
             pg.mouse.set_visible(True)
+
+    def _start_new_game(self):
+        """Запускає нову гру"""
+        # Скидання ігрової статистики та налштувань
+        self.settings.initialize_dynamic_settings()
+        self.stats.reset_stats()
+        self.stats.game_active = True
+        self.sb.prepare_score()
+        self.sb.prepare_level()
+        self.sb.prepare_ships()
+
+        # Очистка списків прибульців та снарядів
+        self.aliens.empty()
+        self.bullets.empty()
+
+        # Створення нового флоту та розміщення корабля по центру
+        self._create_fleet()
+        self.ship.center_ship()
+
+        # Приховати мишу
+        pg.mouse.set_visible(False)
 
     def _update_aliens(self):
         """Оновлює позиції всіх прибульців флоту"""
