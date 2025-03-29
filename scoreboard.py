@@ -16,7 +16,7 @@ class Scoreboard:
         self.stats = ai_game.stats
 
         # Налаштування для виведення рахунку
-        self.text_color = (30, 30, 30)
+        self.text_color = (128, 128, 128)
         self.font = pg.font.SysFont(None, 48)
 
         # Підготовка зображень
