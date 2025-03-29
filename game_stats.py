@@ -8,6 +8,7 @@ class GameStats:
 
         # Гра запускається в неактивному стані
         self.game_active = False
+        self.game_paused = False
 
         # Рекорд гри
         self.high_score = 0
