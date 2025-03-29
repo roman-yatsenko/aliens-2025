@@ -6,7 +6,8 @@ class Settings:
         # Пераметри екрану
         self.screen_width = 1200
         self.screen_height = 800
-        self.bg_color = (230, 230, 230)
+        self.dark_mode = True
+        self.bg_color = (0, 0, 0) if self.dark_mode else (230, 230, 230)
 
         # Параметри корабля
         self.ship_limit = 3
@@ -14,7 +15,7 @@ class Settings:
         # Парематри снаряду
         self.bullet_width = 3
         self.bullet_height = 15
-        self.bullet_color = (60, 60, 60)
+        self.bullet_color = (255, 0, 0) if self.dark_mode else (60, 60, 60)
         self.bullets_allowed = 3
 
         # Параметри прибульців
